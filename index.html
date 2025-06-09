@@ -19,7 +19,6 @@
             width: 100%;
             margin: 0;
             padding: 0;
-            /* Changed overflow to allow vertical scroll if content is too tall */
             overflow-x: hidden; /* Prevent horizontal scroll */
             overflow-y: auto;   /* Allow vertical scroll */
         }
@@ -54,17 +53,16 @@
             padding: 20px;
             max-width: 90%;
             box-sizing: border-box;
-            display: flex; /* Ensure it's a flex container from the start */
+            display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* Center content vertically initially */
+            justify-content: center;
             flex-grow: 1;
             width: 100%;
-            transition: opacity 0.5s ease-in-out; /* For fading out */
-            min-height: 50vh; /* Ensure it takes up enough space */
-            /* Ensure it's visible by default */
-            opacity: 1;
-            pointer-events: auto;
+            transition: opacity 0.5s ease-in-out;
+            min-height: 50vh;
+            opacity: 1; /* Explicitly visible */
+            pointer-events: auto; /* Explicitly interactive */
         }
 
         h1 {
@@ -209,61 +207,61 @@
             max-width: 90%;
             width: 100%;
             flex-direction: column;
-            justify-content: flex-start; /* Align success content to top */
+            justify-content: flex-start;
             align-items: center;
             flex-grow: 1;
-            min-height: 80vh; /* Adjust for better phone display */
-            opacity: 0; /* Start hidden for fade-in */
+            min-height: 80vh;
+            opacity: 0;
             transition: opacity 0.5s ease-in-out;
-            overflow-y: auto; /* Enable scrolling for success content if it overflows */
+            overflow-y: auto;
             -webkit-overflow-scrolling: touch;
         }
         #successContent h3 {
             margin-top: 0;
             margin-bottom: 30px;
-            font-size: 2em; /* Bigger success message */
+            font-size: 2em;
         }
 
         .color-info-row {
             display: flex;
             align-items: center;
-            justify-content: center; /* Center rows horizontally */
+            justify-content: center;
             margin-bottom: 15px;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
+            flex-wrap: wrap;
             width: 100%;
-            max-width: 500px; /* Limit max width for info rows */
-            direction: ltr; /* Ensure row direction is LTR for image=numbers */
-            text-align: left; /* Ensure numbers align left within their container */
-            gap: 10px; /* Space between elements in the row */
+            max-width: 500px;
+            direction: ltr;
+            text-align: left;
+            gap: 10px;
         }
 
         .color-info-row img {
-            width: 80px; /* Larger image size */
+            width: 80px;
             height: 80px;
             object-fit: contain;
-            flex-shrink: 0; /* Prevent image from shrinking */
+            flex-shrink: 0;
             border-radius: 8px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
         }
 
         .color-info-row .equal-sign {
-            font-size: 1.8em; /* Larger equals sign */
+            font-size: 1.8em;
             font-weight: 700;
             flex-shrink: 0;
         }
 
         .color-info-row .numbers {
-            font-size: 1.2em; /* Larger numbers */
+            font-size: 1.2em;
             font-weight: 400;
-            direction: ltr; /* Ensure numbers are LTR */
+            direction: ltr;
             display: flex;
             flex-wrap: wrap;
-            gap: 5px 10px; /* Space between numbers */
-            justify-content: flex-start; /* Align numbers to start */
-            flex-grow: 1; /* Allow numbers to take available space */
+            gap: 5px 10px;
+            justify-content: flex-start;
+            flex-grow: 1;
         }
 
-        /* Media Queries for smaller adjustments */
+        /* Media Queries */
         @media (max-width: 768px) {
             h1 {
                 font-size: 1.5em;
@@ -300,7 +298,7 @@
         @media (max-width: 480px) {
             .container {
                 padding: 10px;
-                min-height: 60vh; /* Adjust for smaller screens */
+                min-height: 60vh;
             }
             h1 {
                 font-size: 1.2em;
@@ -316,93 +314,4 @@
                 padding: 10px 20px;
                 font-size: 1em;
             }
-            .result-message {
-                font-size: 1.2em;
-            }
-            #successContent h3 {
-                font-size: 1.5em;
-            }
-            .color-info-row {
-                flex-direction: column; /* Stack on very small screens for readability */
-                align-items: center;
-                gap: 5px; /* Reduce gap when stacked */
-                margin-bottom: 10px;
-            }
-            .color-info-row img {
-                width: 50px;
-                height: 50px;
-            }
-            .color-info-row .equal-sign {
-                font-size: 1.2em;
-            }
-            .color-info-row .numbers {
-                font-size: 0.9em;
-                text-align: center; /* Center numbers when stacked */
-                justify-content: center; /* Center numbers when stacked */
-            }
-            #successContent {
-                padding: 10px;
-                min-height: 70vh; /* Ensure enough scrollable area */
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="background-overlay"></div>
-    <div class="container" id="mainContainer">
-        <h1>באיזה רחוב נמצא הרוב</h1>
-        <p>הקלד את תשובתך בכתב באותיות בעברית</p>
-
-        <input type="text" id="answerInput" placeholder="הקלד כאן...">
-        <button id="submitButton">זו התשובה, אני בטוח</button>
-
-        <div id="resultMessage" class="result-message"></div>
-    </div>
-
-    <div id="successContent">
-        <h3 id="successMessageText">תשובה נכונה! כל הכבוד.</h3>
-        <div class="color-info-row">
-            <img src="images/black.jpg" alt="Black Color Icon">
-            <span class="equal-sign">=</span>
-            <span class="numbers">30, 57, 31, 58, 465, 464, 463, 436, 409</span>
-        </div>
-        <div class="color-info-row">
-            <img src="images/white.jpg" alt="White Color Icon">
-            <span class="equal-sign">=</span>
-            <span class="numbers">40, 39, 38, 37, 36, 35, 62, 89, 116, 143, 170, 197</span>
-        </div>
-        <div class="color-info-row">
-            <img src="images/red.jpg" alt="Red Color Icon">
-            <span class="equal-sign">=</span>
-            <span class="numbers">42, 43, 44, 45, 46, 47, 74, 101, 128, 155, 182, 236, 209</span>
-        </div>
-        <div class="color-info-row">
-            <img src="images/blue.jpg" alt="Blue Color Icon">
-            <span class="equal-sign">=</span>
-            <span class="numbers">482, 483, 52, 79, 106, 133, 160, 187, 214</span>
-        </div>
-    </div>
-
-    <div class="star-burst-container" id="starBurstContainer"></div>
-
-    <audio id="wrongSound" src="audio/wrong_sound.mp3" preload="auto"></audio>
-    <audio id="correctSound" src="audio/correct_sound.mp3" preload="auto"></audio>
-
-    <script>
-        const answerInput = document.getElementById('answerInput');
-        const submitButton = document.getElementById('submitButton');
-        const resultMessage = document.getElementById('resultMessage');
-        const starBurstContainer = document.getElementById('starBurstContainer');
-        const wrongSound = document.getElementById('wrongSound');
-        const correctSound = document.getElementById('correctSound');
-        const mainContainer = document.getElementById('mainContainer'); // The main puzzle container
-        const successContent = document.getElementById('successContent'); // The success message and images container
-
-        // Function to create star/glitter particles
-        function createStarBurst() {
-            const numParticles = 30;
-            const colors = ['#FFF', '#FFD700', '#FFC0CB'];
-            starBurstContainer.innerHTML = '';
-            for (let i = 0; i < numParticles; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('star-particle
+            .result
